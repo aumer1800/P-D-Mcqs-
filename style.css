@@ -1,0 +1,318 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #f5f5f5;
+}
+
+/* ========================= */
+/* HERO SECTION */
+/* ========================= */
+
+.hero {
+    position: relative;
+    height: 90vh;
+    overflow: hidden;
+}
+
+/* Background Image */
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ========================= */
+/* GLASS EFFECT */
+/* ========================= */
+
+.glass {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================= */
+/* CENTER CONTENT */
+/* ========================= */
+
+.hero-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px 40px;
+    text-align: center;
+    color: white;
+    width: max-content;
+}
+
+.hero-overlay h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+.buttons button {
+    margin: 6px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid white;
+    background: transparent;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.buttons button:hover {
+    transform: scale(1.08);
+}
+
+/* Active Click State */
+.buttons button.active {
+    background: black;
+    color: white;
+    border: 2px solid black;
+}
+
+/* ========================= */
+/* SOCIAL BAR (LEFT) */
+/* ========================= */
+
+.social-bar {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Icon base */
+.social-bar a {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+/* Brand Colors */
+.social-bar a:nth-child(1) {
+    color: #1877F2;
+}
+
+/* Facebook */
+.social-bar a:nth-child(2) {
+    color: #1DA1F2;
+}
+
+/* Twitter */
+.social-bar a:nth-child(3) {
+    color: #E4405F;
+}
+
+/* Instagram */
+.social-bar a:nth-child(4) {
+    color: #25D366;
+}
+
+/* WhatsApp */
+
+/* Hover (only scale) */
+.social-bar a:hover {
+    transform: scale(1.4);
+}
+
+/* ========================= */
+/* SUBSCRIBE BOX (RIGHT) */
+/* ========================= */
+
+.subscribe {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    transform: translateY(-50%);
+    padding: 18px;
+    text-align: center;
+    color: white;
+    width: 160px;
+}
+
+.subscribe p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Subscribe button */
+.subscribe a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.subscribe a:hover {
+    background: white;
+    color: black;
+    transform: scale(1.08);
+}
+
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+
+@media (max-width: 992px) {
+    .hero-overlay h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+        height: 85vh;
+    }
+
+    .hero-overlay {
+        width: 90%;
+        padding: 20px;
+        bottom: 20px;
+    }
+
+    .buttons button {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .social-bar {
+        left: 10px;
+        gap: 14px;
+    }
+
+    .subscribe {
+        right: 10px;
+        width: 130px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero-overlay h1 {
+        font-size: 22px;
+    }
+
+    .buttons button {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .social-bar {
+        flex-direction: row;
+        top: auto;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .subscribe {
+        display: none;
+        /* hide on very small screens */
+    }
+}
+
+/* MCQ SECTION */
+.mcq-section {
+    width: 70%;
+    margin: 40px auto;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.mcq {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.option {
+    padding: 10px;
+    margin: 5px 0;
+    background: #eee;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #ddd;
+}
+
+.correct {
+    background: green !important;
+    color: white;
+}
+
+.wrong {
+    background: red !important;
+    color: white;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+    text-align: center;
+    padding: 40px;
+}
+
+.testimonial-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: black;
+    color: white;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+    .mcq-section {
+        width: 90%;
+    }
+
+    .hero-overlay {
+        width: 90%;
+    }
+}
