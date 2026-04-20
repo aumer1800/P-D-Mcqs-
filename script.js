@@ -1,23 +1,13 @@
 import { data } from './data.js';
 
 /**
- * Shuffles an array using the Fisher-Yates algorithm.
- */
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-/**
  * Loads and displays MCQs for a specific category.
  */
 window.loadCategory = function(category, event) {
     const buttons = document.querySelectorAll(".buttons button");
     const container = document.getElementById("mcqs");
     
+    // Active button UI
     buttons.forEach(btn => btn.classList.remove("active"));
     if (event && event.target) {
         event.target.classList.add("active");
@@ -25,7 +15,7 @@ window.loadCategory = function(category, event) {
 
     container.innerHTML = "";
 
-    // Get questions from data.js
+    // Get questions
     let questions = data[category] ? [...data[category]] : [];
 
     if (questions.length === 0) {
@@ -33,23 +23,21 @@ window.loadCategory = function(category, event) {
         return;
     }
 
-    // Shuffle questions for variety
-    shuffleArray(questions);
-
     questions.forEach((q, index) => {
         let div = document.createElement("div");
         div.classList.add("mcq");
 
-        // CLEANUP: Escape single quotes and backslashes in the explanation string
-        const safeExp = q.explanation.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+        // Escape explanation text
+        const safeExp = q.explanation
+            .replace(/\\/g, "\\\\")
+            .replace(/'/g, "\\'");
 
         let html = `<h4>${index + 1}. ${q.question}</h4>`;
         
         html += `<div class="options-container">`;
         q.options.forEach((opt, i) => {
-            // CRITICAL FIX: Use q.answer to match the data structure
             html += `
-                <div class="option" onclick="check(this, ${q.answer}, ${i}, '${safeExp}')">
+                <div class="option" onclick="check(this, '${q.correct}', '${i}', '${safeExp}')">
                     ${opt}
                 </div>`;
         });
@@ -65,47 +53,64 @@ window.loadCategory = function(category, event) {
 };
 
 /**
- * Handles the logic when an option is clicked.
+ * Handles option click
  */
 window.check = function(element, correct, selected, explanation) {
-    const parent = element.parentElement; 
+
+    // Convert to numbers (IMPORTANT)
+    correct = Number(correct);
+    selected = Number(selected);
+
+    const parent = element.parentElement;
     const mcqContainer = parent.closest(".mcq");
     const options = parent.querySelectorAll(".option");
     const expBox = mcqContainer.querySelector(".explanation");
 
-    // 1. Disable interaction immediately to prevent double-clicking
+    // Disable further clicks
     parent.style.pointerEvents = "none";
     parent.style.opacity = "0.9";
 
-    // 2. Clear existing status indicators
+    // Remove old classes
     options.forEach(opt => {
         opt.classList.remove("correct", "wrong");
     });
 
-    // 3. Logic for Correct vs Incorrect
-    // Note: 'correct' here is the index passed from q.answer
+    // ✅ CORRECT ANSWER
     if (selected === correct) {
         element.classList.add("correct");
-        element.innerHTML += " ✅";
+
+        if (!element.innerHTML.includes("✅")) {
+            element.innerHTML += " ✅";
+        }
+
         expBox.innerHTML = `<strong>Correct!</strong><br>${explanation}`;
         expBox.style.borderLeft = "4px solid #2e7d32";
         expBox.style.color = "#2e7d32";
-    } else {
+    } 
+    
+    // ❌ WRONG ANSWER
+    else {
         element.classList.add("wrong");
-        element.innerHTML += " ❌";
-        
-        // Highlight the actual correct answer
+
+        if (!element.innerHTML.includes("❌")) {
+            element.innerHTML += " ❌";
+        }
+
+        // Highlight correct option
         if (options[correct]) {
             options[correct].classList.add("correct");
-            options[correct].innerHTML += " ✅";
+
+            if (!options[correct].innerHTML.includes("✅")) {
+                options[correct].innerHTML += " ✅";
+            }
         }
-        
+
         expBox.innerHTML = `<strong>Incorrect</strong><br>${explanation}`;
         expBox.style.borderLeft = "4px solid #d32f2f";
         expBox.style.color = "#d32f2f";
     }
 
-    // 4. ALWAYS SHOW the explanation box
+    // Show explanation
     expBox.style.display = "block";
     expBox.style.marginTop = "15px";
     expBox.style.padding = "10px";

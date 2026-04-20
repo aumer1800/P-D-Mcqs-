@@ -262,10 +262,7 @@ body {
     background: #ddd;
 }
 
-.correct {
-    background: green !important;
-    color: white;
-}
+
 
 .wrong {
     background: red !important;
@@ -318,7 +315,14 @@ footer {
 }
 
 /* Add this to your CSS file */
+
+
 .disabled {
     pointer-events: none; /* Disables all clicks */
     opacity: 0.8;        /* Optional: makes it look slightly locked */
+}
+.option.correct {
+    background-color: #c8e6c9;  /* light green */
+    color: #2e7d32;            /* dark green text */
+    border: 2px solid #2e7d32;
 }
