@@ -316,3 +316,9 @@ footer {
         width: 90%;
     }
 }
+
+/* Add this to your CSS file */
+.disabled {
+    pointer-events: none; /* Disables all clicks */
+    opacity: 0.8;        /* Optional: makes it look slightly locked */
+}

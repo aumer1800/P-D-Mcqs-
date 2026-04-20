@@ -32,10 +32,10 @@
         <h1>Practice MCQs</h1>
 
         <div class="buttons">
-            <button onclick="loadCategory('pd')">Parallel & Distributed</button>
-            <button onclick="loadCategory('ai')">AI</button>
-            <button onclick="loadCategory('embedded')">Embedded System</button>
-            <button onclick="loadCategory('web')">Web</button>
+            <button onclick="loadCategory('pd',event)">Parallel & Distributed</button>
+            <button onclick="loadCategory('ai',event)">AI</button>
+            <button onclick="loadCategory('embedded',event)">Embedded System</button>
+            <button onclick="loadCategory('web',event)">Web</button>
         </div>
     </div>
 
@@ -89,9 +89,12 @@
 <footer>
     <p>© 2026 MCQ Practice | All Rights Reserved</p>
 </footer>
-
+<script src="P&D.js"></script>
+<script src="AI.js"></script>
+<script src="Embedded.js"></script>
+<script src="Web.js"></script>
 <script src="data.js"></script>
-<script src="script.js"></script>
+<script type='module' src="script.js"></script>
 
 </body>
 </html>
