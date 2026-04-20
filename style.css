@@ -96,6 +96,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    animation: floatUpDown 3s ease-in-out infinite;
+
 }
 
 /* Icon base */
@@ -144,6 +146,20 @@ body {
     text-align: center;
     color: white;
     width: 160px;
+     animation: floatUpDown 3s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(-50%) translateY(0px);
+    }
+    50% {
+        transform: translateY(-50%) translateY(-10px);
+    }
+    100% {
+        transform: translateY(-50%) translateY(0px);
+    }
 }
 
 .subscribe p {
